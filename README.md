@@ -23,6 +23,6 @@ There are currently two notebooks for this project:
 
 Any additional code that is used in the second notebook can be found in the folder ```util/```. It contains the following files:
 
-  * ```custom_transformers.py```: custom skleanr transformers that are used in the second notebook
-  * ```ML_eval.py```: Some functions I wrote to evaluate machine learning  models conveniently.
+  * ```custom_transformers.py```: custom sklearn transformers that are used in the second notebook
+  * ```ML_eval.py```: Some functions I wrote to evaluate the machine learning models in the second notebook conveniently.
   * ```prepare_data.py```: A function that summarizes all the preprocessing steps that are done in the EDA notebook. This function is currently not used in this project (as the second notebook uses pipelines to preprocess the data).
