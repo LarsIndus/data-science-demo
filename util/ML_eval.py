@@ -35,21 +35,19 @@ def evaluate_on_training_set(model, X_train: pd.DataFrame,
     # If predictions are smaller than 0, replace by 0
     train_predictions = np.where(train_predictions < 0, 0, train_predictions)
     
-    # Perform cross validation; scoring method is MAE
-    if cv is not None:
-        cv_score = cross_val_score(model, X_train, y_train, cv = cv,
-                                   scoring = "neg_mean_absolute_error")
+    # Calculate and print metrics
+    MAE = mean_absolute_error(y_train, train_predictions)
+    RMSE = mean_squared_error(y_train, train_predictions, squared = False)
     
-    # Print training errors
-    print("MAE (training): %.2f" %
-          mean_absolute_error(y_train, train_predictions))
-    print("RMSE (training): %.2f" %
-          mean_squared_error(y_train, train_predictions, squared = False))
+    print(f"MAE (training): {MAE:.2f}")
+    print(f"RMSE (training): {RMSE:.2f}")
     
     # Print validation error if CV has been done
     if cv is not None:
-        print("MAE cross-validated (%d folds): %.2f" %
-              (cv, -np.mean(cv_score)))
+        # Scoring method is MAE
+        cv_score = cross_val_score(model, X_train, y_train, cv = cv,
+                                   scoring = "neg_mean_absolute_error")
+        print(f"MAE cross-validated ({d} folds): {-np.mean(cv_score):.2f}")
 
 
 # 2. Learning curves ----------------------------------------------------------
@@ -125,9 +123,12 @@ def evaluate_on_test_set(model, X_train: pd.DataFrame, y_train: pd.Series,
     # If predictions are smaller than 0, replace by 0
     y_pred = np.where(y_pred < 0, 0, y_pred)
 
-    # Print metrics
-    print("MAE: %.2f" % mean_absolute_error(y_test, y_pred))
-    print("RMSE: %.2f" % mean_squared_error(y_test, y_pred, squared = False))
+    # Calculate and print metrics
+    MAE = mean_absolute_error(y_test, y_pred)
+    RMSE = mean_squared_error(y_test, y_pred, squared = False)
+    
+    print(f"MAE: {MAE:.2f}")
+    print(f"RMSE: {RMSE:.2f}")
         
     # Plot real against predicted values
     plt.figure(figsize = (7, 7))

@@ -71,8 +71,8 @@ class DropColumnsTransformer(BaseEstimator, TransformerMixin):
             if col in X_trans.columns:
                 X_trans.drop(col, axis = 1, inplace = True)
             elif col not in X_trans.columns and self.verbose:
-                print("DropTransformer: Could not drop '", col, "'; ",
-                      "no such column. Ignore and continue ...", sep = '')
+                print(f"DropTransformer: Could not drop '{col}'; " +
+                      "no such column. Ignore and continue ...")
         return X_trans
 
 
@@ -94,8 +94,8 @@ class DTypeTransformer(BaseEstimator, TransformerMixin):
             if col in X_trans.columns:
                 X_trans[col] = X_trans[col].astype("category")
             elif col not in X_trans.columns and self.verbose:
-                print("DTypeTransformer: Could not convert '", col, "'; ",
-                      "no such column. Ignore and continue ...", sep = '')
+                print(f"DTypeTransformer: Could not convert '{col}'; " +
+                      "no such column. Ignore and continue ...")
         return X_trans
 
 
