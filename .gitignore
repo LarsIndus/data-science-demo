@@ -1,8 +1,5 @@
 ## ADD STUFF IN THIS SECTION -----------------------------------------------
 
-# ignore virtual environment
-.venv_bike/
-
 # ignore html files
 *.html
 
